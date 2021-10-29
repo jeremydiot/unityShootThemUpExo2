@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,7 +15,7 @@ public class GameplayManager : MonoBehaviour
     public int scoreValue = 0;
     public TextMeshProUGUI score;
     public GameObject panelGameOver;
-    
+
     private void Awake() {
         Instance = this;
         score.text = "Score : "+scoreValue.ToString();
@@ -37,5 +39,15 @@ public class GameplayManager : MonoBehaviour
     public void menuButton()
     {
         SceneManager.LoadScene(0);
+    }
+    public bool newScore()
+    {
+        if (PlayerPrefs.GetInt("highScore",0) < scoreValue)
+        {
+            PlayerPrefs.SetInt("highScore",scoreValue);
+            return true;
+        }
+
+        return false;
     }
 }

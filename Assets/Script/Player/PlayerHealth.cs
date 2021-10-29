@@ -10,7 +10,7 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         GameplayManager.Instance.life.text = "Life : "+healthPoint.ToString();
-    }
+    }   
 
     private void Update()
     {
@@ -18,6 +18,7 @@ public class PlayerHealth : MonoBehaviour
         {
             Destroy(gameObject);
             GameplayManager.Instance.panelGameOver.SetActive(true);
+            GameplayManager.Instance.newScore();
         }
     }
 
