@@ -14,6 +14,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Update()
     {
+        GameplayManager.Instance.life.text = "Life : "+healthPoint.ToString();
         if (healthPoint <= 0)
         {
             Destroy(gameObject);
@@ -24,12 +25,27 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.CompareTag("RainbowHeart"))
+        {
+            healthPoint += 5;
+            Destroy(other.gameObject);
+        }
         if (other.CompareTag("BulletEnemy"))
         {
             healthPoint--;
-            GameplayManager.Instance.life.text = "Life : "+healthPoint.ToString();
+            GameplayManager.Instance.scoreValue -= 50;
+            Destroy(other.gameObject);
+        }
+        if (other.CompareTag("Enemy"))
+        {
+            healthPoint--;
             GameplayManager.Instance.scoreValue -= 25;
             Destroy(other.gameObject);
+        }
+        if (other.CompareTag("BulletBoss1"))
+        {
+            healthPoint--;
+            GameplayManager.Instance.scoreValue -= 50;
         }
         
     }

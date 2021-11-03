@@ -4,8 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - BulletEnemy
   - Bullet
+  - Enemy
+  - Bonus1
+  - BulletEnemy
+  - RainbowStar
+  - RainbowHeart
+  - BulletBoss1
   layers:
   - Default
   - TransparentFX

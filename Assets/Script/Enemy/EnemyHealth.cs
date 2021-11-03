@@ -1,18 +1,23 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
     public int healthPoint;
-
+    private bool onceDestroy = false;
+    public float destroyDelay = 0.5f;
+    
     private void Update()
     {
-        if (healthPoint <= 0)
+        if (healthPoint <= 0 && !onceDestroy)
         {
-            Destroy(gameObject);
+            onceDestroy = true;
             GameplayManager.Instance.scoreValue += 100;
+            Destroy(gameObject, destroyDelay);
+                
         }
     }
 
@@ -20,13 +25,14 @@ public class EnemyHealth : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            
+            Destroy(gameObject, destroyDelay);
             GameplayManager.Instance.scoreValue -= 50;
         }
         if (other.CompareTag("Bullet"))
         {
+            Destroy(other.gameObject, destroyDelay);
             healthPoint--;
-            Destroy(other.gameObject);
         }
         
     }
