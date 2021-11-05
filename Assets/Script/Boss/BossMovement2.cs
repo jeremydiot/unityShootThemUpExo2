@@ -4,10 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class BossMovement : MonoBehaviour
+public class BossMovement2 : MonoBehaviour
 {
     public float speed = 10;
-    
 
     public Camera mainCamera;
     private Vector2 screenBounds;
@@ -16,9 +15,14 @@ public class BossMovement : MonoBehaviour
 
     private float objectWidth;
     private float objectHeight;
-
+    private float xmin, xmax, ymin, ymax;
     private void Start() {
         
+    }
+
+    private void Awake()
+    {
+        this.enabled = false;
     }
 
     private void OnEnable()
@@ -26,27 +30,26 @@ public class BossMovement : MonoBehaviour
         screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width,Screen.height, mainCamera.transform.position.z));
         objectWidth = transform.GetComponent<SpriteRenderer>().bounds.extents.x;
         objectHeight = transform.GetComponent<SpriteRenderer>().bounds.extents.y;
-        InvokeRepeating("SpawnBoss", 0f, 2f);
-    }
-
-    public void SpawnBoss()
-    {
-        float xmin, xmax, ymin, ymax;
-        xmin = (screenBounds.x * -1)+objectWidth+6;
+        
+        
+        xmin = (screenBounds.x * -1)+objectWidth+8;
         xmax = (screenBounds.x)-objectWidth;
 
         ymin = (screenBounds.y * -1)+objectHeight;
         ymax = (screenBounds.y)-objectHeight;
+        
+        transform.position  = new Vector3(xmin, (ymax+ymin)/2, 0);
+    }
 
-        Vector3[] bossPos = new Vector3[5];
-
-        bossPos[0] = new Vector3((xmax + xmin)/2, (ymax + ymin)/2, 0);
-        bossPos[1] = new Vector3(xmax/2, ymax/2, 0);
-        bossPos[2] = new Vector3(xmin/2, ymin/2, 0);
-        bossPos[3] = new Vector3(xmin/2, ymax/2, 0);
-        bossPos[4] = new Vector3(xmax/2, ymin/2, 0);
-
-        transform.position = bossPos[Random.Range(0, 5)];
+    private void Update()
+    {
+        Vector3 position  = new Vector3((xmax + xmin)/2, (ymax + ymin)/2, 0);
+        
+        Quaternion q = transform.rotation;
+        transform.RotateAround(position, Vector3.forward, 100*Time.deltaTime);
+        transform.rotation = q;
+        
+        //transform.RotateAround(gameObject.transform.position, Vector3.up, 30 * Time.deltaTime);
     }
 
     private void OnDisable()

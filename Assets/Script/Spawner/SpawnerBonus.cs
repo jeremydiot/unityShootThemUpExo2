@@ -17,6 +17,12 @@ public class SpawnerBonus : MonoBehaviour
         InvokeRepeating("SpawnBonus",2f,10f);
     }
 
+    public void Level2()
+    {
+        CancelInvoke();
+        InvokeRepeating("SpawnBonus2",2f,10f);
+    }
+
     private void SpawnBonus()
     {
 
@@ -30,6 +36,16 @@ public class SpawnerBonus : MonoBehaviour
         {
             Instantiate(star, transform.position, transform.rotation);
         }
+    }
+    
+    private void SpawnBonus2()
+    {
+
+        //int num = Random.Range(0, 4);
+        //if (num == 2)
+        //{
+            Instantiate(heart, transform.position, transform.rotation);
+        //}
     }
     
     private void Update()

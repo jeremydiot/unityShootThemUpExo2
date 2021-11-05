@@ -486,9 +486,14 @@ GameObject:
   - component: {fileID: 464100789}
   - component: {fileID: 464100790}
   - component: {fileID: 464100791}
+  - component: {fileID: 464100794}
+  - component: {fileID: 464100793}
+  - component: {fileID: 464100792}
+  - component: {fileID: 464100795}
+  - component: {fileID: 464100796}
   m_Layer: 0
   m_Name: Boss
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -592,7 +597,6 @@ MonoBehaviour:
   speed: 10
   mainCamera: {fileID: 443180021}
   animator: {fileID: 464100789}
-  raindow: {fileID: 0}
 --- !u!114 &464100791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -607,6 +611,87 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Bullet1: {fileID: 324905332994199157, guid: a3783e1807575da16a98d26a2b5f54f1, type: 3}
   bulletOffset: {x: -1.5, y: 0, z: 0}
+  animator: {fileID: 464100789}
+--- !u!114 &464100792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464100786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1548f0cf38c7f5eda96d099296d177c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPoint: 26
+  destroyDelay: 0.2
+  animator: {fileID: 464100789}
+--- !u!58 &464100793
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464100786}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.23, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.52
+--- !u!50 &464100794
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464100786}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &464100795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464100786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae7c0dda01762a624bd385e81bf9e363, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  mainCamera: {fileID: 443180021}
+  animator: {fileID: 464100789}
+--- !u!114 &464100796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464100786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4ef376cd2b0fbbed9a0e19528487b99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 5144925106455154110, guid: 8a8e720d8515d44e0a9fc391edc0fef4, type: 3}
 --- !u!1 &473223214
 GameObject:
   m_ObjectHideFlags: 0
@@ -2027,7 +2112,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: -6836061800980497416, guid: eec3f24396540648f8190f2bd2551fd5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2485,7 +2570,7 @@ GameObject:
   - component: {fileID: 2044094730}
   m_Layer: 0
   m_Name: SpawnerBonus
-  m_TagString: Untagged
+  m_TagString: SpawnerBonus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

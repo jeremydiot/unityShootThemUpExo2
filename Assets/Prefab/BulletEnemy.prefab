@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5400142232372441782}
   - component: {fileID: 5400142232372441783}
-  - component: {fileID: 5400142232372441780}
   - component: {fileID: 5400142232372441777}
   - component: {fileID: 3637339547274001779}
+  - component: {fileID: -8431927317347357662}
   m_Layer: 0
   m_Name: BulletEnemy
   m_TagString: BulletEnemy
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 1e64f57327ddfb61a900a7d0d364ea24, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -85,20 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5400142232372441780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5400142232372441781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cf405d59d5569d65a01ee52407016a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: -10
-  timerDestroy: 2.5
 --- !u!58 &5400142232372441777
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -136,3 +122,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-8431927317347357662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5400142232372441781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d294078a6d639c8c9f6ddc80c91f588, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  timerDestroy: 2.5

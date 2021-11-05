@@ -6,10 +6,10 @@ public class EnemyShoot : MonoBehaviour
 {
     public GameObject bulletEnemy;
     public Vector3 bulletOffset;
-    // Start is called before the first frame update
+    // Start is called before the first frame updatepublic Animator animator;
     void Start()
     {
-        InvokeRepeating("SpawnBullet",1f,1.75f);
+        InvokeRepeating("SpawnBullet",1f,1.5f);
     }
 
     void SpawnBullet()

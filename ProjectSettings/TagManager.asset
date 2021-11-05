@@ -11,6 +11,10 @@ TagManager:
   - RainbowStar
   - RainbowHeart
   - BulletBoss1
+  - NormalStar
+  - Boss
+  - SpawnerBonus
+  - BulletBoss2
   layers:
   - Default
   - TransparentFX
