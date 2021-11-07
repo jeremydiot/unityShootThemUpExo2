@@ -1,18 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletBoss2 : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float speed;
+    
+
+    private void Update()
     {
-        
+        transform.Translate(Vector3.left * speed * Time.deltaTime);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        
+
+        if (other.CompareTag("Bullet"))
+        {
+            GameplayManager.Instance.scoreValue += 25;
+            Destroy(gameObject);
+            Destroy(other.gameObject);
+        }    
     }
+    
+    
 }

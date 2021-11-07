@@ -7,19 +7,20 @@ public class BossHealth : MonoBehaviour
     public int healthPoint;
     private bool onceDestroy = false;
     public float destroyDelay = 0.5f;
-    public Animator animator;
     private bool once = false;
     private void Update()
     {
+        
         if (healthPoint <= 0 && !onceDestroy)
         {
             onceDestroy = true;
             GameplayManager.Instance.scoreValue += 100;
             Destroy(gameObject, destroyDelay);
+            GameplayManager.Instance.finish();
                 
         }
         
-        if (healthPoint <= 25 && !once)
+        if (healthPoint <= 20 && !once)
         { 
             once = true;
             Invoke("stage2",0);
@@ -28,10 +29,10 @@ public class BossHealth : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-
         if (other.CompareTag("Bullet"))
         {
             Destroy(other.gameObject, destroyDelay);
+            GameplayManager.Instance.scoreValue += 25;
             healthPoint--;
         }
         
@@ -43,8 +44,7 @@ public class BossHealth : MonoBehaviour
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerShoot>().RestartBoss();
         gameObject.GetComponent<BossShoot>().enabled = false;
         gameObject.GetComponent<BossMovement>().enabled = false;
-        animator.SetInteger("state",2);
-        
+
         GameObject GOspawner = GameObject.FindGameObjectWithTag("SpawnerBonus");
         GOspawner.GetComponent<SpawnerBonus>().Level2();
         
@@ -61,11 +61,8 @@ public class BossHealth : MonoBehaviour
             Destroy(GObullet[i]);
         }
         
-        Invoke("stage2movement",2);
-    }
-
-    private void stage2movement()
-    {
         gameObject.GetComponent<BossMovement2>().enabled = true;
+        gameObject.GetComponent<BossShoot2>().enabled = true;
     }
+    
 }

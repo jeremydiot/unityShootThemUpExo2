@@ -15,6 +15,7 @@ TagManager:
   - Boss
   - SpawnerBonus
   - BulletBoss2
+  - Cloud
   layers:
   - Default
   - TransparentFX

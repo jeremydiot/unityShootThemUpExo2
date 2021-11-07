@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private float objectWidth;
     private float objectHeight;
 
+    private bool canMove = true;
     private void Start() {
         screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width,Screen.height, mainCamera.transform.position.z));
         objectWidth = transform.GetComponent<SpriteRenderer>().bounds.extents.x;
@@ -43,6 +45,35 @@ public class PlayerMovement : MonoBehaviour
             }
             Destroy(other.gameObject);
         }
+
+        if (other.CompareTag("Boss"))
+        {
+            Vector3 newPos = transform.position;
+            
+            if (other.transform.position.x > newPos.x) newPos.x -= 0.3f;
+            else newPos.x += 0.3f;
+            if (other.transform.position.y > newPos.y) newPos.y -= 0.3f;
+            else newPos.y += 0.3f;
+
+            transform.position = newPos;
+        }
+        
+        if (other.CompareTag("Cloud"))
+        {
+            speed = speed /6;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Boss"))
+        {
+            canMove = true;
+        }
+        if (other.CompareTag("Cloud"))
+        {
+            speed = speed *6;
+        }
     }
 
     public void Update()
@@ -53,20 +84,23 @@ public class PlayerMovement : MonoBehaviour
 
         float x = 0;
         float y = 0;
-        
+
         Instantiate(raindow, transform.position, transform.rotation);
-        
+
         animator.SetFloat("vertical_movment", verticalMove);
-        
+
         if (Input.GetKey("up")) y = 1;
         if (Input.GetKey("down")) y = -1;
         if (Input.GetKey("left")) x = -1;
         if (Input.GetKey("right")) x = 1;
-        
+
         if (Input.GetKey("up") && Input.GetKey("down")) y = 0;
         if (Input.GetKey("left") && Input.GetKey("right")) x = 0;
-        
-        transform.Translate(new Vector3(x,y) * speed * Time.deltaTime);
+
+        if (canMove)
+        {
+            transform.Translate(new Vector3(x, y) * speed * Time.deltaTime);
+        }
     }
 
     private void LateUpdate() {

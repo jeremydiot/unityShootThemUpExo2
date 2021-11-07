@@ -17,6 +17,7 @@ public class GameplayManager : MonoBehaviour
     public GameObject panelGameOver;
     public GameObject infoPanel;
     public int level = 1;
+    
     private void Awake() {
         Instance = this;
         score.text = "Score : "+scoreValue.ToString();
@@ -33,20 +34,28 @@ public class GameplayManager : MonoBehaviour
         {
             infoPanel.SetActive(true);
             level = 2;
-            Invoke("loadNextLevel",10);
-            scoreValue = 0;
+            Invoke("loadNextLevel", 10);
         }
         score.text = "Score : "+scoreValue.ToString();
     }
 
     public void loadNextLevel()
     {
+        level = 2;
         SceneManager.LoadScene(2);
     }
-    
+
+    public void finish()
+    {
+        level = 1;
+        newScore();
+        infoPanel.SetActive(true);
+        Invoke("menuButton",5f);
+    }
+
     public void retryButton()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(level);
     }
     
     public void menuButton()

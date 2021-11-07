@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public int healthPoint;
-
+    public Rigidbody2D rigidbody;
     private void Start()
     {
         GameplayManager.Instance.life.text = "Life : "+healthPoint.ToString();
@@ -48,5 +48,18 @@ public class PlayerHealth : MonoBehaviour
             GameplayManager.Instance.scoreValue -= 50;
         }
         
+        if (other.CompareTag("BulletBoss2"))
+        {
+            healthPoint -= 2;
+            GameplayManager.Instance.scoreValue -= 50;
+        }
+
+        if (other.CompareTag("Boss"))
+        {
+            GameplayManager.Instance.scoreValue -= 50;
+            healthPoint--;
+        }
+        
     }
+    
 }

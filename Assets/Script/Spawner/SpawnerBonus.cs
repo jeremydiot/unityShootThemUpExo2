@@ -45,7 +45,7 @@ public class SpawnerBonus : MonoBehaviour
         //if (num == 2)
         //{
             Instantiate(heart, transform.position, transform.rotation);
-        //}
+        //w}
     }
     
     private void Update()

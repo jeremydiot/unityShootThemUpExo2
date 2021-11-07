@@ -27,6 +27,7 @@ public class BossMovement2 : MonoBehaviour
 
     private void OnEnable()
     {
+        
         screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width,Screen.height, mainCamera.transform.position.z));
         objectWidth = transform.GetComponent<SpriteRenderer>().bounds.extents.x;
         objectHeight = transform.GetComponent<SpriteRenderer>().bounds.extents.y;
