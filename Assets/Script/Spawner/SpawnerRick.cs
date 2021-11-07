@@ -11,13 +11,13 @@ public class SpawnerRick : MonoBehaviour
     public GameObject rickSpeek;
     private void Start() {
         InvokeRepeating("SpawnRick",1f,1f);
-        Invoke("SpawnSpeek",18);
+        InvokeRepeating("SpawnSpeek",18,25f);
     }
 
     public void SpawnSpeek()
     {
         GameObject GoRick = Instantiate(rickSpeek, Vector3.zero, Quaternion.identity);
-        Destroy(GoRick, 7f);
+        Destroy(GoRick, 10f);
     }
 
     void SpawnRick()
